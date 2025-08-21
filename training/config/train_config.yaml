@@ -1,0 +1,37 @@
+model_name: "runwayml/stable-diffusion-v1-5"
+
+work_dir: "${WORK_BASE}/workdir"
+
+dataset:
+  raw_root: "${WORK_BASE}/data/raw/coco"
+  processed_root: "${WORK_BASE}/data/processed/coco_no_adverbs"
+  split: "train"
+  resolution: 512
+  center_crop: true
+
+train:
+  seed: 42
+  max_train_steps: 100
+  learning_rate: 3.0e-6
+  train_batch_size: 16
+  gradient_accumulation_steps: 1
+  mixed_precision: "bf16"
+  enable_xformers: true
+  lr_scheduler: "cosine"
+  lr_warmup_steps: 0
+  noise_offset: 0.0
+  lora_rank: 8
+  lora_alpha: 16
+  lora_dropout: 0.0
+  gradient_checkpointing: true
+  num_workers: 8
+
+logging:
+  log_steps: 5
+  save_steps: 50
+  output_dir: "${WORK_BASE}/outputs/lora_sd15_no_adverbs_a100"
+
+inference:
+  num_inference_steps: 30
+  guidance_scale: 7.5
+  seed: 1234
