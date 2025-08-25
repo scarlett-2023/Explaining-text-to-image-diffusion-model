@@ -1,5 +1,15 @@
 # LoRA 微调 Stable Diffusion（只用 diff loss，去副词改数据集）
 
+
+# 使用方式
+
+首先运行您的环境设置脚本：
+bash
+source setup_env.sh
+然后运行修改后的Python脚本：
+bash
+python your_script.py
+
 目标：
 - 通过“改数据集而不改模型”来纠正模型关注无关副词的问题：删除 caption 中的副词，将处理后的文本与原图配对训练。
 - 使用 LoRA 只微调 UNet（冻结 VAE 与 CLIP 文本编码器）。
