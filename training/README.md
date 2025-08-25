@@ -9,6 +9,10 @@ source setup_env.sh
 然后运行修改后的Python脚本：
 bash
 python your_script.py
+运行后，您可以通过以下方式验证数据是否下载到了正确的位置：
+bash
+ls -la "$WORK_BASE/data/raw/coco"
+数据应该会被下载到 /projects/bepi/data/raw/coco 目录中，而不是当前目录下的 ./data/raw/coco。
 
 目标：
 - 通过“改数据集而不改模型”来纠正模型关注无关副词的问题：删除 caption 中的副词，将处理后的文本与原图配对训练。
