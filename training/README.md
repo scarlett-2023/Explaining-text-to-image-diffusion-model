@@ -18,6 +18,10 @@ python -m spacy download en_core_web_sm
 ```bash
 accelerate config
 ```
+运行您的环境设置脚本
+```bash
+source setup_env.sh 
+```
 
 ## 2. 准备 COCO 数据
 
@@ -27,23 +31,33 @@ accelerate config
 ```bash
 python scripts/download_coco_kaggle.py
 ```
+您可以通过以下方式验证数据是否下载到了正确的位置
+```bash
+ls -la "$WORK_BASE/data/raw/coco" 
+```
+数据应该会被下载到您设置的环境路径中（默认/projects/bepi/data/raw/coco）
+
 完成后请检查目录结构是否类似：
 ```
 data/raw/coco/
-  images/train2017/*.jpg
+  images/train2014/*.jpg
   images/val2017/*.jpg
-  annotations/captions_train2017.json
+  annotations/captions_train2014.json
   annotations/captions_val2017.json
 ```
+如果不类似请手动修改调整
 
 方式 B（已有 COCO 本地）：将你的 COCO 目录指向 `config/train_config.yaml` 中的 `dataset.raw_root`。
 
 ## 3. 数据集去副词处理并保存为 datasets
 
+训练集
 ```bash
 python prepare_dataset.py --raw_root ./data/raw/coco --processed_root ./data/processed/coco_no_adverbs --split train
-# 如需验证集：
-# python prepare_dataset.py --raw_root ./data/raw/coco --processed_root ./data/processed/coco_no_adverbs --split val
+```
+验证集
+```bash
+python prepare_dataset.py --raw_root ./data/raw/coco --processed_root ./data/processed/coco_no_adverbs --split val
 ```
 
 ## 4. 训练
@@ -67,6 +81,7 @@ python train_lora_diffusion.py --config config/train_config.yaml
 在 `logging.output_dir` 下，每 `save_steps` 步会保存一次 LoRA 权重（UNet 注意力处理器权重）。
 
 注意：
+- 适用于 diffusers 0.34.0 和 PEFT 0.17.0
 - 我们只训练 UNet 的 LoRA 权重；
 - VAE 与 CLIP 文本编码器均冻结，不会更新；
 - 训练损失为纯 “diff loss”（噪声预测 MSE）。

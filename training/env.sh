@@ -1,10 +1,11 @@
 #!/usr/bin/env bash
 # 将所有缓存/数据/输出重定向到大盘
-export WORK_BASE="/projects/bepi"
+mkdir -p /work/nvme/bepi/sxie7/training
+export WORK_BASE="/work/nvme/bepi/sxie7/training"
 
 # 创建目录
 mkdir -p "$WORK_BASE"/{data/raw,caches,tmp,outputs,workdir} \
-         "$WORK_BASE/caches"/{huggingface,transformers,diffusers,datasets,torch,pip,xdg}
+      "$WORK_BASE/caches"/{huggingface,transformers,diffusers,datasets,torch,pip,xdg}
 
 # 缓存与临时目录
 export XDG_CACHE_HOME="$WORK_BASE/caches/xdg"
