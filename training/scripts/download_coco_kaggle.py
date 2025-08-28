@@ -5,9 +5,9 @@ from kaggle.api.kaggle_api_extended import KaggleApi
 Script to download and extract COCO dataset from Kaggle.
 The data will need to be manually organized into the following structure:
 raw_root/
-  images/train2017/*.jpg
+  images/train2014/*.jpg
   images/val2017/*.jpg
-  annotations/captions_train2017.json
+  annotations/captions_train2014.json
   annotations/captions_val2017.json
 """
 
@@ -25,9 +25,9 @@ def main(output_dir=DEFAULT_OUTPUT_DIR):
     
     print(f"Download and extraction complete. Files are in: {output_dir}")
     print("\nPlease manually organize the files into the following structure:")
-    print("  images/train2017/*.jpg")
+    print("  images/train2014/*.jpg")
     print("  images/val2017/*.jpg")
-    print("  annotations/captions_train2017.json")
+    print("  annotations/captions_train2014.json")
     print("  annotations/captions_val2017.json")
 
 if __name__ == "__main__":
