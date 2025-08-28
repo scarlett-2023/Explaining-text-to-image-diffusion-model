@@ -18,9 +18,9 @@ python -m spacy download en_core_web_sm
 ```bash
 accelerate config
 ```
-运行您的环境设置脚本
+运行环境设置脚本
 ```bash
-source setup_env.sh 
+source env.sh 
 ```
 
 ## 2. 准备 COCO 数据
