@@ -38,9 +38,9 @@ python scripts/download_coco_kaggle.py
 完成后请检查目录结构是否类似：
 ```
 data/raw/coco/
-  images/train2017/*.jpg
+  images/train2014/*.jpg
   images/val2017/*.jpg
-  annotations/captions_train2017.json
+  annotations/captions_train2014.json
   annotations/captions_val2017.json
 ```
 
