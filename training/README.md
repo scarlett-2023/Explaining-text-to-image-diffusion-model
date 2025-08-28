@@ -35,7 +35,7 @@ python scripts/download_coco_kaggle.py
 ```bash
 ls -la "$WORK_BASE/data/raw/coco" 
 ```
-数据应该会被下载到您设置的环境路径中（默认/projects/bepi/data/raw/coco）
+数据应该会被下载到您设置的环境路径中（默认/projects/bepi/sxie7/training/data/raw/coco）
 
 完成后请检查目录结构是否类似：
 ```
